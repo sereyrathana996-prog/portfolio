@@ -1,8 +1,5 @@
 [phases.setup]
-nixPkgs = ["php84", "php84Extensions.mbstring", "php84Extensions.pdo", "php84Extensions.tokenizer", "php84Extensions.xml", "php84Extensions.curl", "php84Extensions.zip", "composer"]
-
-[phases.build]
-cmds = ["composer install --no-dev --optimize-autoloader"]
+nixPkgs = ["php84", "php84Extensions.mbstring", "php84Extensions.pdo", "php84Extensions.tokenizer", "php84Extensions.xml", "php84Extensions.curl", "php84Extensions.zip", "composer", "apacheHttpd"]
 
 [start]
-cmd = "php -S 0.0.0.0:$PORT -t public"
+cmd = "php artisan config:cache && apache2 -D FOREGROUND"
